@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommentsTable extends Migration
+class CreateTaskUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('task_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->longText('body');
-            $table->longText('url', 255)->nullable();
+            $table->integer('task_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->integer('commentable_id')->unsigned();
-            $table->string('commentable_type');
-            $table->integer('project_id')->unsigned();
-            $table->foreign('project_id')->references('id')->on('projects');
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('task_id')->references('id')->on('tasks');
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('task_user');
     }
 }

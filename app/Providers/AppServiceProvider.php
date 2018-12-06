@@ -7,6 +7,7 @@ use Auth;
 use View;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['new','home'], function ($view) {
             $view->with('auth',Auth::user());
         });
+        Schema::defaultStringLength(191);
     }
 
     /**
