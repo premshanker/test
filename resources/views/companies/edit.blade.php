@@ -58,8 +58,8 @@
             <ol class="list-unstyled">
               <li><a href="/companies/{{ $company->id }}/show">View Company</a></li>
               <li><a href="/companies">All Company</a></li>
-              <li><a href="#">Delete</a></li>
-              <li><a href="#">Add new member</a></li>
+             <!-- <li><a href="#">Delete</a></li>
+              <li><a href="#">Add new member</a></li>-->
               
             </ol>
           </div>
