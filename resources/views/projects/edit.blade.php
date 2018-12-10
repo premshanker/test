@@ -2,16 +2,16 @@
 
 @section('content')
 
-<div class="row col-md-9 col-lg-9 col-sm-9 pull-left " style="background: white;">
-    <h1>Create new company </h1>
+<div class="col-md-9 col-lg-9 col-sm-9 pull-left">
       
 
       <!-- Example row of columns -->
       <div class="row col-md-12 col-lg-12 col-sm-12" style="background: white; margin: 10px;">
       
-     <form method="post" action="{{ route('companies.store') }}">
+     <form method="post" action="{{ route('companies.update', [$company->id]) }}">
         {{ csrf_field() }}
 
+        <input type="hidden" name="_method" value="put">
         
         <div class="form-group">
           <label for="company-name">Name<span class="required">*</span></label>
@@ -20,7 +20,8 @@
                  class="form-control"
                  type="text"
                  name="name"
-                 spellcheck="false">
+                 spellcheck="false"
+                 value="{{ $company->name }}">
         
         </div>
         <div class="form-group">
@@ -33,7 +34,7 @@
                  row="5"
                  spellcheck="false"
                  class="from-control autosize-target text-left">
-                 </textarea>
+                 {{ $company->description }}</textarea>
         
         </div>
         <div class="form-group">
@@ -55,8 +56,8 @@
           <div class="sidebar-module">
             <h4>Action</h4>
             <ol class="list-unstyled">
-              
-              <li><a href="/companies">My Companies</a></li>
+              <li><a href="/companies/{{ $company->id }}/show">View Company</a></li>
+              <li><a href="/companies">All Company</a></li>
              <!-- <li><a href="#">Delete</a></li>
               <li><a href="#">Add new member</a></li>-->
               

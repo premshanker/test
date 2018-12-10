@@ -21,14 +21,20 @@ Route::get('/user/new', ['uses'=>'NewController@new']);
 Route::get('/user/master', ['uses'=>'NewController@master']);
 Route::get('/user/create',['uses'=>'UserController@create']);
 Route::post('/user/save',['uses'=>'UserController@store']);
-Route::get('/home', 'HomeController@index')->name('home');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::middleware(['auth'])->group(function () {
 Route::resource('companies', 'CompaniesController');
+Route::get('projects/create/(company_id?)', 'ProjectsController@create');
 Route::resource('projects', 'ProjectsController');
 Route::resource('roles', 'RolesController');
 Route::resource('tasks', 'TasksController');
 Route::resource('users', 'UsersController');
+Route::resource('comments', 'CommentsController');
+
+});
 
