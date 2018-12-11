@@ -16,10 +16,10 @@
 
       <!-- Example row of columns -->
       <div class="row col-md-12 col-lg-12 col-sm-12" style="background: white; margin: 10px;">
-      <a href="/projects/create/{{ $project->id }}" class="pull-right btn btn-primary btn-sm" >Add Project</a>
-     
+      
+      @include('partials.comments')
       <div class="row container-fluid">
-
+      
 <form method="post" action="{{ route('comments.store') }}">
                             {{ csrf_field() }}
 
@@ -65,20 +65,9 @@
 
 
                         </div>
-
-     
-     
-     
-      @foreach($project->comments as $comment)
-        <div class="col-lg-4 col-md-4 col-sm-4">
-          <h2>{{ $comment->body }}</h2>
-          <p class="text-danger"> {{ $comment->url }}</p>
-          <p><a class="btn btn-primary" href="/projects/{{ $project->id }}" role="button">View Project &raquo;</a></p>
-       
-        </div>
-        @endforeach
       </div>
     </div>
+    
     <div class="col-sm-3 col-md-3 col-lg-3 pull-right">
           <!--<div class="sidebar-module sidebar-module-inset">
             <h4>About</h4>
